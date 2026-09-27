@@ -25,7 +25,7 @@ public class RiesgoConsumer {
         this.analisisRepository = analisisRepository;
     }
 
-    @RabbitListener(queues = RabbitMQConfig.APELLIDO_QUEUE)
+ 
     public void onRecarga(RecargaEvent event) {
         Analisis analisis = toAnalisis(event);
         analisisRepository.save(analisis);
