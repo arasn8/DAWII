@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
         name = "products-services",
@@ -17,6 +18,6 @@ public interface TarjetaClient {
     @GetMapping("/tarjetas/{id}")
     TarjetaResponse getTarjetaById(@PathVariable Long id);
 
-  @PutMapping("/tarjetas/{id}")
-  TarjetaResponse putTarjetaById(@PathVariable Long id, RecargaRequest request);
+ @PutMapping("/tarjetas/{id}")
+TarjetaResponse putTarjetaById(@PathVariable Long id, @RequestBody RecargaRequest request);
 }
