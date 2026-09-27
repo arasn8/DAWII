@@ -48,6 +48,7 @@ public class RecargaService {
                 .build();
 
         Recarga saved = recargaRepository.save(recarga);
+        TarjetaResponse tarjetaActualizada = tarjetaClient.putTarjetaById(request.idTarjeta(), request);
 
         recargaProducer.publish(new RecargaEvent(
                 saved.getIdRecarga(),
@@ -60,7 +61,7 @@ public class RecargaService {
         return new RecargaResponse(
                 saved.getIdRecarga(),
                 saved.getIdTarjeta(),
-                saved.getSaldoDisponible(),
+                tarjetaActualizada.saldoDisponible(),
                 saved.getMontoRecarga(),
                 saved.getFechaRecarga()
         );
