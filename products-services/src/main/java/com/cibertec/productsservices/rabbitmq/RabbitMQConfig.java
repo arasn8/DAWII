@@ -20,7 +20,7 @@ public class RabbitMQConfig {
 	public static final String STOCK_RESERVE_ROUTING_KEY = "stock.reserve";
 	public static final String STOCK_LOW_ROUTING_KEY = "stock.low";
 	public static final String RIESGO_EXCHANGE = "risk-exchange";
-	public static final String APELLIDO_QUEUE = "Apellido_Queue";
+	public static final String APELLIDO_QUEUE = "MARTINEZ_Queue";
 	public static final String APELLIDO_ROUTING_KEY = "apellido.risk";
 
 	@Bean
