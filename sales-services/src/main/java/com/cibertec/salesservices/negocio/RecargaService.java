@@ -42,7 +42,7 @@ public class RecargaService {
 
         Recarga recarga = Recarga.builder()
                 .idTarjeta(tarjeta.idTarjeta())
-                .saldoDisponible(tarjeta.saldoDisponible()
+                .saldoDisponible(tarjeta.saldoDisponible())
                 .montoRecarga(request.montoRecarga())
                 .fechaRecarga(LocalDateTime.now())
                 .build();
