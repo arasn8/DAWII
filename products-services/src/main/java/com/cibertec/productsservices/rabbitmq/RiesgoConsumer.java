@@ -1,10 +1,7 @@
 package com.cibertec.productsservices.rabbitmq;
 
-import com.cibertec.productsservices.dto.TarjetaUpdateRequest;
 import com.cibertec.productsservices.entidades.Analisis;
-import com.cibertec.productsservices.negocio.TarjetaService;
 import com.cibertec.productsservices.repositorio.AnalisisRepository;
-import com.cibertec.productsservices.repositorio.TarjetaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,10 +15,8 @@ public class RiesgoConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(RiesgoConsumer.class);
 
     private final AnalisisRepository analisisRepository;
-    private final TarjetaService tarjetaService;
 
-    public RiesgoConsumer(AnalisisRepository analisisRepository, TarjetaService tarjetaService) {
-        this.tarjetaService = tarjetaService;
+    public RiesgoConsumer(AnalisisRepository analisisRepository) {
         this.analisisRepository = analisisRepository;
     }
 
@@ -29,7 +24,6 @@ public class RiesgoConsumer {
     public void onRecarga(RecargaEvent event) {
         Analisis analisis = toAnalisis(event);
         analisisRepository.save(analisis);
-        tarjetaService.putTarjetaById(analisis.getIdTarjeta(), new TarjetaUpdateRequest(analisis.getIdTarjeta(), analisis.getMontoRecarga()));
         LOGGER.info("Recarga evaluada por riesgo: {}", analisis.getSituacion());
     }
 

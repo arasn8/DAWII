@@ -56,7 +56,7 @@ public class TarjetaService {
     Tarjeta tarjeta = tarjetaRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarjeta no encontrada"));
 
-    tarjeta.setSaldoAsignado(request.montoRecarga().add(tarjeta.getSaldoAsignado()));
+      tarjeta.setSaldoDisponible(request.montoRecarga().add(tarjeta.getSaldoDisponible()));
     return toResponse(tarjetaRepository.save(tarjeta));
   }
 }
